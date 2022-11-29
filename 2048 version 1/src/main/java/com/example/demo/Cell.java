@@ -4,7 +4,6 @@ package com.example.demo;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 public class Cell {
@@ -60,9 +59,7 @@ public class Cell {
         setColorByNumber(getNumber());
     }
 
-
-
-    void setColorByNumber(int number) { //refactor this to polymorphism
+    void setColorByNumber(int number) {
         switch (number) {
             case 0:
                 rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
@@ -121,11 +118,7 @@ public class Cell {
         return textClass;
     }
 
-    
-    
-}
-
-/*abstract class cellColor{ // switch to polymorphism
+    /*abstract class cellColor{ // switch to polymorphism
     abstract void setColorByNumber(int number);
 }
 
@@ -212,3 +205,5 @@ class color2048 extends cellColor{
 		rectangle.setFill(Color.rgb(250,0,0,1));
     }
 }*/
+
+}
