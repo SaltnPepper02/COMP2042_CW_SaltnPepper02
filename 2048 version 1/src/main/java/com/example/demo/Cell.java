@@ -4,6 +4,7 @@ package com.example.demo;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 public class Cell {
@@ -59,7 +60,9 @@ public class Cell {
         setColorByNumber(getNumber());
     }
 
-    void setColorByNumber(int number) {
+
+
+    void setColorByNumber(int number) { //refactor this to polymorphism
         switch (number) {
             case 0:
                 rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
@@ -118,4 +121,94 @@ public class Cell {
         return textClass;
     }
 
+    
+    
 }
+
+/*abstract class cellColor{ // switch to polymorphism
+    abstract void setColorByNumber(int number);
+}
+
+class color0 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+    }
+}
+
+class color2 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(232, 255, 100, 0.5));
+    }
+}
+
+class color4 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(232, 220, 50, 0.5));
+    }
+}
+
+class color8 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(232, 200, 44, 0.8));
+    }
+}
+
+class color16 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(232, 170, 44, 0.8));
+    }
+}
+
+class color32 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(180, 120, 44, 0.7));
+    }
+}
+
+class color64 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(180, 100, 44, 0.7));
+    }
+}
+
+class color128 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(180, 80, 44, 0.7));
+    }
+}
+
+class color256 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(180, 60, 44, 0.8));
+    }
+}
+
+class color516 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(180, 30, 44, 0.8));
+    }
+}
+
+class color1024 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(250, 0, 44, 0.8));
+    }
+}
+
+class color2048 extends cellColor{
+    private Shape rectangle;
+	void setColorByNumber(int number){
+		rectangle.setFill(Color.rgb(250,0,0,1));
+    }
+}*/

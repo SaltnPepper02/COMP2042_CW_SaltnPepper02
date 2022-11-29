@@ -20,6 +20,7 @@ class GameScene {
     private Cell[][] cells = new Cell[n][n];
     private Group root;
     private long score = 0;
+    public int winscore = 0;
 
     static void setN(int number) {
         n = number;
@@ -217,11 +218,15 @@ class GameScene {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
             cells[i][des].setModify(true);
-            
             score += cells[i][des+sign].getNumber();
+            if(winscore < cells[i][des+sign].getNumber()) {
+            winscore = cells[i][des+sign].getNumber();
+            }
+            System.out.println(winscore);
         } else if (des != j) {
-            cells[i][j].changeCell(cells[i][des]);
+            cells[i][j].changeCell(cells[i][des]);// scoring has been implemented here
         }
+        
     }
 
     private boolean isValidDesV(int i, int j, int des, int sign) {
@@ -238,9 +243,14 @@ class GameScene {
             cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
             score += cells[des+sign][j].getNumber();
+            if(winscore < cells[des+sign][j].getNumber()) {
+                winscore = cells[des+sign][j].getNumber();
+                }
+            System.out.println(winscore);
         } else if (des != i) {
-            cells[i][j].changeCell(cells[des][j]);
+            cells[i][j].changeCell(cells[des][j]);// scoring has been implemented here
         }
+        
     }
 
     private boolean haveSameNumberNearly(int i, int j) {
@@ -288,7 +298,7 @@ class GameScene {
         randomFillNumber(1);
         randomFillNumber(1);
 
-        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
+        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, key ->{
                 Platform.runLater(() -> {
                     int haveEmptyCell;
                     if (key.getCode() == KeyCode.DOWN) {
@@ -302,6 +312,16 @@ class GameScene {
                     }
                     scoreText.setText(score + "");
                     haveEmptyCell = GameScene.this.haveEmptyCell();
+                    
+                    if (winscore == 2048) {
+                    	primaryStage.setScene(endGameScene);
+                    	
+                    	EndGame.getInstance().Win(endGameScene, endGameRoot, primaryStage, score);
+                        root.getChildren().clear();
+                        score = 0;
+                    	
+                    }
+                    
                     if (haveEmptyCell == -1) {
                         if (GameScene.this.canNotMove()) {
                             primaryStage.setScene(endGameScene);
@@ -310,7 +330,7 @@ class GameScene {
                             root.getChildren().clear();
                             score = 0;
                         }
-                    } else if(haveEmptyCell == 1 & (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT) & !GameScene.this.canNotMove())
+                    } else if(haveEmptyCell == 1 & (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT))// this line need something else
                         GameScene.this.randomFillNumber(2);
                 });
             });

@@ -25,6 +25,43 @@ public class EndGame {
             singleInstance= new EndGame();
         return singleInstance;
     }
+    
+    	public void Win(Scene endGameScene, Group root, Stage primaryStage, long score) {
+        	Text text = new Text("YOU WIN");
+            text.relocate(250,250);
+            text.setFont(Font.font(80));
+            root.getChildren().add(text);
+            
+            Text scoreText = new Text(score+"");
+            scoreText.setFill(Color.BLACK);
+            scoreText.relocate(350,500);
+            scoreText.setFont(Font.font(80));
+            root.getChildren().add(scoreText);
+            
+            Button quitButton = new Button("QUIT");//implement this button
+            quitButton.setPrefSize(100,30);
+            quitButton.setTextFill(Color.BLACK);
+            root.getChildren().add(quitButton);
+            quitButton.relocate(400,600);
+            quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Quit Dialog");
+                    alert.setHeaderText("Quit from this page");
+                    alert.setContentText("Are you sure?");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                        root.getChildren().clear();
+                        primaryStage.close();
+                    }
+                }
+            });
+            
+            
+        }
+    
 
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){//may be able to split this
         Text text = new Text("GAME OVER");
@@ -38,10 +75,12 @@ public class EndGame {
         scoreText.relocate(350,500);
         scoreText.setFont(Font.font(80));
         root.getChildren().add(scoreText);
+        
+        
 
         Button quitButton = new Button("QUIT");//implement this button
         quitButton.setPrefSize(100,30);
-        quitButton.setTextFill(Color.PINK);
+        quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
         quitButton.relocate(400,600);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -59,8 +98,41 @@ public class EndGame {
                 }
             }
         });
+        Button restartButton = new Button("RESTART");//implement this button
+        restartButton.setPrefSize(100,30);
+        restartButton.setTextFill(Color.BLACK);
+        root.getChildren().add(restartButton);
+        restartButton.relocate(400,700);
+        restartButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Restart Dialog");
+                alert.setHeaderText("Restart the game");
+                alert.setContentText("Are you sure?");
 
-
-
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    root.getChildren().clear();
+                    /*Group gameRoot = new Group();
+                    Main mainthing = new Main();
+                    mainthing.setGameRoot(gameRoot);
+                    Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+                    mainthing.setGameScene();
+                    primaryStage.setScene(gameScene);
+                    GameScene game = new GameScene();
+                    game.game(gameScene, gameRoot, primaryStage, endGameScene, endGameSceneW, endgameRoot);*/
+                }
+            }
+        });
+        
+        
     }
+    
 }
+        
+
+
+
+        
+
