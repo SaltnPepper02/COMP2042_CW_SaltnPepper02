@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
 import java.util.Random;
 
 class GameScene {
@@ -21,10 +22,21 @@ class GameScene {
     private Group root;
     private long score = 0;
     public int winscore = 0;
+    public int[][] Old = new int[n][n];
+    public int[][] New = new int[n][n];
+
 
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
+    }
+
+    private void updateArray (int[][] array){
+        for(int i=0; i<n; i++){// it keeps updating with every key pressed
+            for(int j=0; j<n; j++){
+                array[i][j]=cells[i][j].getNumber();
+            }
+        }
     }
 
     static double getLENGTH() {
@@ -274,8 +286,10 @@ class GameScene {
         return true;
     }
 
+
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root = root;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 cells[i][j] = new Cell((j) * LENGTH + (j + 1) * distanceBetweenCells,
@@ -283,6 +297,7 @@ class GameScene {
             }
 
         }
+
 
         Text text = new Text();
         root.getChildren().add(text);
@@ -295,9 +310,13 @@ class GameScene {
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
+
+
+
         randomFillNumber(1);
         randomFillNumber(1);
 
+        updateArray(Old);
         gameScene.addEventHandler(KeyEvent.KEY_RELEASED, key ->{
                 Platform.runLater(() -> {
                     int haveEmptyCell;
@@ -310,9 +329,11 @@ class GameScene {
                     } else if (key.getCode() == KeyCode.RIGHT) {
                         GameScene.this.moveRight();
                     }
+
                     scoreText.setText(score + "");
+                    updateArray(New);
                     haveEmptyCell = GameScene.this.haveEmptyCell();
-                    
+
                     if (winscore == 2048) {
                     	primaryStage.setScene(endGameScene);
                     	
@@ -321,7 +342,8 @@ class GameScene {
                         score = 0;
                     	
                     }
-                    
+
+                    boolean check = false;
                     if (haveEmptyCell == -1) {
                         if (GameScene.this.canNotMove()) {
                             primaryStage.setScene(endGameScene);
@@ -330,8 +352,16 @@ class GameScene {
                             root.getChildren().clear();
                             score = 0;
                         }
-                    } else if(haveEmptyCell == 1 & (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT))// this line need something else
-                        GameScene.this.randomFillNumber(2);
+                    }
+                    else if(haveEmptyCell == 1 & (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT)){// this line need something else
+                        check = Arrays.deepEquals(Old,New);
+                        if(check == false) {
+                            GameScene.this.randomFillNumber(2);
+                            updateArray(Old);
+
+
+                        }}
+
                 });
             });
     }

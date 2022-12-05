@@ -1,7 +1,10 @@
 package com.example.demo;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,11 +15,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 
 public class EndGame {
     private static EndGame singleInstance = null;
+    private Stage stage;
     private EndGame(){
 
     }
@@ -65,14 +70,14 @@ public class EndGame {
 
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){//may be able to split this
         Text text = new Text("GAME OVER");
-        text.relocate(250,250);
+        text.relocate(250,200);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
 
 
         Text scoreText = new Text(score+"");
         scoreText.setFill(Color.BLACK);
-        scoreText.relocate(350,500);
+        scoreText.relocate(350,450);
         scoreText.setFont(Font.font(80));
         root.getChildren().add(scoreText);
         
@@ -82,7 +87,7 @@ public class EndGame {
         quitButton.setPrefSize(100,30);
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
-        quitButton.relocate(400,600);
+        quitButton.relocate(400,550);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -102,7 +107,7 @@ public class EndGame {
         restartButton.setPrefSize(100,30);
         restartButton.setTextFill(Color.BLACK);
         root.getChildren().add(restartButton);
-        restartButton.relocate(400,700);
+        restartButton.relocate(400,600);
         restartButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -114,14 +119,16 @@ public class EndGame {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     root.getChildren().clear();
-                    /*Group gameRoot = new Group();
-                    Main mainthing = new Main();
-                    mainthing.setGameRoot(gameRoot);
-                    Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-                    mainthing.setGameScene();
-                    primaryStage.setScene(gameScene);
-                    GameScene game = new GameScene();
-                    game.game(gameScene, gameRoot, primaryStage, endGameScene, endGameSceneW, endgameRoot);*/
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    primaryStage.setTitle("Welcome");
+                    Scene scene = new Scene(root);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
                 }
             }
         });

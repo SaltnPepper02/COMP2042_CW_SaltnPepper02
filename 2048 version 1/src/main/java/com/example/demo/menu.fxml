@@ -13,7 +13,7 @@
             <Font size="91.0" />
          </font>
       </Text>
-      <Button fx:id="startButton" layoutX="320.0" layoutY="414.0" mnemonicParsing="false" onAction="#whenButtonPushed" text="Start" textAlignment="CENTER">
+      <Button fx:id="startButton" layoutX="334.0" layoutY="328.0" mnemonicParsing="false" onAction="#whenStartPushed" text="Start" textAlignment="CENTER">
          <font>
             <Font size="31.0" />
          </font>
@@ -25,5 +25,12 @@
             <Font size="24.0" />
          </font>
       </Text>
+      <Button fx:id="leadorboard_button" layoutX="279.0" layoutY="427.0" mnemonicParsing="false" onAction="#whenLBPushed" text="Leaderboard" textAlignment="CENTER">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Button>
+      <Button fx:id="Red" layoutX="685.0" layoutY="461.0" mnemonicParsing="false" onAction="#colorChangeRed" text="Red" />
+      <Button fx:id="Peach" layoutX="679.0" layoutY="513.0" mnemonicParsing="false" onAction="#colorChangeYellow" text="Yellow" />
    </children>
 </AnchorPane>

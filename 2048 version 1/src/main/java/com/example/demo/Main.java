@@ -22,16 +22,21 @@ import java.util.Scanner;
 
 public class Main extends Application {
     static final int WIDTH = 900;
-    static final int HEIGHT = 800;
+    static final int HEIGHT = 700;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
     private static Scanner input= new Scanner(System.in);
 
+    Group endgameRoot = new Group();
+    Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
+
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
+        System.out.println("This is set");
     }
 
     public Scene getGameScene(){
+        System.out.println("This is get");
         return gameScene;
     }
 
@@ -54,9 +59,6 @@ public class Main extends Application {
         new Scene(accountRoot, WIDTH, HEIGHT, Color.rgb(150, 20, 100, 0.2));
         Group getAccountRoot = new Group();
         new Scene(getAccountRoot, WIDTH, HEIGHT, Color.rgb(200, 20, 100, 0.2));
-        Group endgameRoot = new Group();
-        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
-        //Scene endGameSceneW = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(0, 255, 0, 0.2));
         Group rankRoot = new Group();
         new Scene(rankRoot, WIDTH, HEIGHT, Color.rgb(250, 50, 120, 0.3));
         BackgroundFill background_fill = new BackgroundFill(Color.rgb(120, 100, 100), CornerRadii.EMPTY, Insets.EMPTY);
@@ -85,7 +87,7 @@ public class Main extends Application {
 
 
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        primaryStage.setTitle("Hello Controller");
+        primaryStage.setTitle("Welcome");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
