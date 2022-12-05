@@ -25,6 +25,24 @@ class GameScene {
     public int[][] Old = new int[n][n];
     public int[][] New = new int[n][n];
 
+    public void setDimension(String string){
+        System.out.println("this is called");
+        if (string == "3x3"){
+            n = 3;
+
+        }
+        else if (string == "5x5"){
+            n = 5;
+        }
+        else if (string == "6x6"){
+            n = 6;
+        }
+        else{
+            n = 4;
+        }
+        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
+    }
+
 
     static void setN(int number) {
         n = number;
@@ -229,12 +247,11 @@ class GameScene {
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
-            cells[i][des].setModify(true);
+            cells[i][des+sign].setModify(true);
             score += cells[i][des+sign].getNumber();
             if(winscore < cells[i][des+sign].getNumber()) {
             winscore = cells[i][des+sign].getNumber();
             }
-            System.out.println(winscore);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);// scoring has been implemented here
         }
@@ -253,7 +270,7 @@ class GameScene {
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
-            cells[des][j].setModify(true);
+            cells[des+sign][j].setModify(true);
             score += cells[des+sign][j].getNumber();
             if(winscore < cells[des+sign][j].getNumber()) {
                 winscore = cells[des+sign][j].getNumber();
