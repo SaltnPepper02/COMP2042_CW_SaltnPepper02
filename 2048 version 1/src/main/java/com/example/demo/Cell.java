@@ -133,6 +133,7 @@ class color0 extends cellColor{
 
 class color2 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(232, 255, 100, 0.5));
     }
@@ -140,6 +141,7 @@ class color2 extends cellColor{
 
 class color4 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(232, 220, 50, 0.5));
     }
@@ -147,6 +149,7 @@ class color4 extends cellColor{
 
 class color8 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(232, 200, 44, 0.8));
     }
@@ -154,6 +157,7 @@ class color8 extends cellColor{
 
 class color16 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(232, 170, 44, 0.8));
     }
@@ -161,6 +165,7 @@ class color16 extends cellColor{
 
 class color32 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(180, 120, 44, 0.7));
     }
@@ -168,6 +173,7 @@ class color32 extends cellColor{
 
 class color64 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(180, 100, 44, 0.7));
     }
@@ -175,6 +181,7 @@ class color64 extends cellColor{
 
 class color128 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(180, 80, 44, 0.7));
     }
@@ -182,6 +189,7 @@ class color128 extends cellColor{
 
 class color256 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(180, 60, 44, 0.8));
     }
@@ -189,6 +197,7 @@ class color256 extends cellColor{
 
 class color516 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(180, 30, 44, 0.8));
     }
@@ -196,6 +205,7 @@ class color516 extends cellColor{
 
 class color1024 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(250, 0, 44, 0.8));
     }
@@ -203,6 +213,7 @@ class color1024 extends cellColor{
 
 class color2048 extends cellColor{
     private Shape rectangle;
+    @Override
 	void setColorByNumber(int number){
 		rectangle.setFill(Color.rgb(250,0,0,1));
     }

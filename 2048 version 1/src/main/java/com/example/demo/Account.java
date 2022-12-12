@@ -1,22 +1,16 @@
 package com.example.demo;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.*;
+import java.util.*;
 
 public class Account implements Comparable<Account> {
     private long score = 0;
     private String userName ;
-    private static ArrayList<Account> accounts = new ArrayList<>();
+    public static ArrayList<Account> accounts = new ArrayList<>();
 
-    public Account(String userName){
-        this.userName=userName;
+    public Account(String userName, long score){
+        this.userName = userName;
+        this.score = score;
     }
 
     @Override
@@ -24,17 +18,18 @@ public class Account implements Comparable<Account> {
         return Long.compare(o.getScore(), score);
     }
 
-    public void addToScore(long score) {
-        this.score += score;
+    public void setScore(long score) {
+        this.score = score;
     }
 
-    private long getScore() {
+    public long getScore() {
         return score;
     }
 
-    private String getUserName() {
+    public String getUserName() {
         return userName;
     }
+
 
     static Account accountHaveBeenExist(String userName){
         for(Account account : accounts){
@@ -46,10 +41,59 @@ public class Account implements Comparable<Account> {
 
     }
 
-    static Account makeNewAccount(String userName){
-        Account account = new Account(userName);
+    public String toString()
+    {
+        return this.userName + " " + this.score;
+    }
+
+    static Account makeNewAccount(String userName, long score){
+        Account account = new Account(userName, score);
         accounts.add(account);
+
         return account;
+    }
+
+    public static void clearFile()
+    {
+        try{
+            FileWriter fw = new FileWriter("Leaderboard.txt", false);
+            PrintWriter pw = new PrintWriter(fw, false);
+            pw.flush();
+            pw.close();
+            fw.close();
+        }catch(Exception exception){
+            System.out.println("Exception have been caught");
+        }
+    }
+    public static void readFile() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("Leaderboard.txt"));
+
+            String lineText;
+            while ((lineText = br.readLine()) != null) {
+                String[] line = lineText.split(" ");
+                accounts.add(new Account(line[0], Long.parseLong(line[1])));
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println("File Read Error");
+        }
+
+    }
+    public static void write2File(){
+        try{
+            FileWriter fw = new FileWriter("Leaderboard.txt", true);
+
+            Collections.sort(accounts);
+            for(Account accounts: accounts){
+                fw.write(accounts + System.lineSeparator());
+            }
+            accounts.clear();// after writing clear the arraylist so there would be duplicate info
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
 }

@@ -22,25 +22,28 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.example.demo.Account.makeNewAccount;
-import static com.example.demo.Main.HEIGHT;
-import static com.example.demo.Main.WIDTH;
+import static com.example.demo.Account.readFile;
+import static com.example.demo.Main.*;
 
 public class Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public Color myColor;
+    public static Color myColor = Color.rgb(189, 177, 92);
     @FXML
     private ColorPicker myColorPicker;
-
     @FXML
     private TextField myTextField;
-
     @FXML
     private ChoiceBox<String> myChoiceBox;
+    @FXML
+    private Label myLabel;
+    public static String username;
+
     private String[] dimensions = {"3x3", "4x4", "5x5", "6x6"};
 
-    String username;
+    Main main = new Main();
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -48,69 +51,50 @@ public class Controller implements Initializable {
         myChoiceBox.setOnAction(this::dimensionSelection);
     }
 
-    private void dimensionSelection(ActionEvent event) {
+    private void dimensionSelection(ActionEvent event) {//used to set grid
         String Dimension = myChoiceBox.getValue();
-        System.out.println(Dimension);
         GameScene gs = new GameScene();
         gs.setDimension(Dimension);
     }
 
 
-    public void changeColor(ActionEvent event){
-        myColor = myColorPicker.getValue();
-    }
 
-
-    Main main = new Main();
-    Scene CgameScene;
-
-    public void whenStartPushed(ActionEvent event) throws IOException {
+    public void whenStartPushed(ActionEvent event) throws IOException {// start button
         username = myTextField.getText();
-        System.out.println(username);
-        GameScene game = new GameScene();
-        Group CgameRoot= main.getGameRoot();
-        CgameScene = main.getGameScene();
-        game.game(CgameScene, CgameRoot, stage, main.endGameScene, main.endgameRoot);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(CgameScene);
-        stage.show();
+        if (username.isEmpty() == true) {
+            myLabel.setText("Please Enter a username");
+        }
+        else if(username.matches(".*\\s.*")){
+            myLabel.setText("No Spaces in username");
+        }
+        else{
+            main.startGame();
+        }
+
     }
 
-    public void colorChange(ActionEvent event) throws IOException{
-        myColor = myColorPicker.getValue();
-        Group newroot = new Group();
-        main.setGameRoot(newroot);
-        Scene gameSceneColor = new Scene(newroot, WIDTH, HEIGHT, myColor);
-        main.setGameScene(gameSceneColor);
-    }
-
-    public void whenLBPushed(ActionEvent event) throws IOException{
+    public void whenLBPushed(ActionEvent event) throws IOException {// Leaderboard button
+        readFile();
         Parent root = FXMLLoader.load(getClass().getResource("leaderboard.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("LeaderBoard");
+        pstage.setTitle("LeaderBoard");
         Scene scene2 = new Scene(root);
-        stage.setScene(scene2);
-        stage.show();
+        pstage.setScene(scene2);
+        pstage.show();
+    }
+    public void colorChange(ActionEvent event) throws IOException{// used to change background
+        myColor = myColorPicker.getValue();
     }
 
-    public void whenBackPushed(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Welcome");
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    public void whenQuitPushed(ActionEvent event) throws IOException {
+
+    public void whenQuitPushed(ActionEvent event) throws IOException {// quit button
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Quit");
         alert.setHeaderText("You are about to QUIT");
         alert.setContentText("Are u Sure?");
 
         if(alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.close();
+            pstage.close();
         }
     }
 

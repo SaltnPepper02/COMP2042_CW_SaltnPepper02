@@ -20,6 +20,8 @@ import javafx.scene.shape.Rectangle;
 import java.util.Optional;
 import java.util.Scanner;
 
+import static com.example.demo.Controller.myColor;
+
 public class Main extends Application {
     static final int WIDTH = 900;
     static final int HEIGHT = 700;
@@ -30,15 +32,17 @@ public class Main extends Application {
     Group endgameRoot = new Group();
     Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
 
+    public static Stage pstage;
+
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
-        System.out.println("This is set");
     }
 
     public Scene getGameScene(){
-        System.out.println("This is get");
         return gameScene;
     }
+
+
 
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
@@ -48,11 +52,27 @@ public class Main extends Application {
         return gameRoot;
     }
 
+    private void setPStage(Stage pstage){
+        Main.pstage = pstage;
+    }
+
+    public static Stage getPstage(){
+        return pstage;
+    }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {// implement menu here
+        setPStage(primaryStage);
+        pstage = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        primaryStage.setTitle("2048");
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
-
+    public void startGame(){
         Group menuRoot = new Group();
         new Scene(menuRoot, WIDTH, HEIGHT);
         Group accountRoot = new Group();
@@ -75,22 +95,13 @@ public class Main extends Application {
         backgroundOfMenuForPlay.setY(180);
         accountRoot.getChildren().add(backgroundOfMenuForPlay);
 
-
-
-        /*Group gameRoot = new Group();
+        Group gameRoot = new Group();
         setGameRoot(gameRoot);
-        Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+        Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, myColor);
         setGameScene(gameScene);
-        primaryStage.setScene(gameScene);
+        pstage.setScene(gameScene);
         GameScene game = new GameScene();
-        game.game(gameScene, gameRoot, primaryStage, endGameScene/*, endGameSceneW, endgameRoot);*/
-
-
-        Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        primaryStage.setTitle("Welcome");
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        game.game(gameScene, gameRoot, pstage, endGameScene, endgameRoot);
     }
 
     public static void main(String[] args) {

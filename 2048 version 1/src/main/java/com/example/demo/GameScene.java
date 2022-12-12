@@ -1,15 +1,22 @@
 package com.example.demo;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Random;
 
 class GameScene {
@@ -20,13 +27,16 @@ class GameScene {
     private TextMaker textMaker = TextMaker.getSingleInstance();
     private Cell[][] cells = new Cell[n][n];
     private Group root;
-    private long score = 0;
+    private static long score = 0;
     public int winscore = 0;
     public int[][] Old = new int[n][n];
     public int[][] New = new int[n][n];
 
-    public void setDimension(String string){
-        System.out.println("this is called");
+    public long getScore(){
+        return score;
+    }
+
+    public void setDimension(String string){// set grid
         if (string == "3x3"){
             n = 3;
 
@@ -49,7 +59,7 @@ class GameScene {
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     }
 
-    private void updateArray (int[][] array){
+    private void updateArray (int[][] array){// used to compare before and after key pressed
         for(int i=0; i<n; i++){// it keeps updating with every key pressed
             for(int j=0; j<n; j++){
                 array[i][j]=cells[i][j].getNumber();
@@ -61,7 +71,7 @@ class GameScene {
         return LENGTH;
     }
 
-    private void randomFillNumber(int turn) {
+    private void randomFillNumber() {
 
         Cell[][] emptyCells = new Cell[n][n];
         int a = 0;
@@ -107,6 +117,20 @@ class GameScene {
             emptyCells[xCell][yCell].setTextClass(text);
             root.getChildren().add(text);
             emptyCells[xCell][yCell].setColorByNumber(4);
+        }
+    }
+    public void spawnNumber(){//test
+        if (n == 5){
+            randomFillNumber();
+            randomFillNumber();
+        }
+        else if(n == 6){
+            randomFillNumber();
+            randomFillNumber();
+            randomFillNumber();
+        }
+        else{
+            randomFillNumber();
         }
     }
 
@@ -275,7 +299,6 @@ class GameScene {
             if(winscore < cells[des+sign][j].getNumber()) {
                 winscore = cells[des+sign][j].getNumber();
                 }
-            System.out.println(winscore);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);// scoring has been implemented here
         }
@@ -316,8 +339,14 @@ class GameScene {
         }
 
 
+        Text title = new Text();
+        root.getChildren().add(title);
+        title.setText("2048");
+        title.setFont(Font.font(50));
+        title.relocate(750, 50);
         Text text = new Text();
         root.getChildren().add(text);
+
         text.setText("SCORE :");
         text.setFont(Font.font(30));
         text.relocate(750, 100);
@@ -327,11 +356,34 @@ class GameScene {
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
+        Button quitButton = new Button("End Game");//implement this button
+        quitButton.setPrefSize(100,30);
+        quitButton.setTextFill(Color.BLACK);
+        root.getChildren().add(quitButton);
+        quitButton.relocate(750,450);
+        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("End Game");
+                alert.setHeaderText("End Game");
+                alert.setContentText("Are you sure?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    primaryStage.setScene(endGameScene);
+                    EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                    root.getChildren().clear();
+                    score = 0;
+                }
+            }
+        });
 
 
 
-        randomFillNumber(1);
-        randomFillNumber(1);
+
+        randomFillNumber();
+        randomFillNumber();
 
         updateArray(Old);
         gameScene.addEventHandler(KeyEvent.KEY_RELEASED, key ->{
@@ -351,7 +403,7 @@ class GameScene {
                     updateArray(New);
                     haveEmptyCell = GameScene.this.haveEmptyCell();
 
-                    if (winscore == 2048) {
+                    if (winscore == 2048) {//add win condition
                     	primaryStage.setScene(endGameScene);
                     	
                     	EndGame.getInstance().Win(endGameScene, endGameRoot, primaryStage, score);
@@ -371,9 +423,9 @@ class GameScene {
                         }
                     }
                     else if(haveEmptyCell == 1 & (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT)){// this line need something else
-                        check = Arrays.deepEquals(Old,New);
-                        if(check == false) {
-                            GameScene.this.randomFillNumber(2);
+                        check = Arrays.deepEquals(Old,New);// check if there is any changes after key released
+                        if(check == false) {// if there are spawn number
+                            randomFillNumber();
                             updateArray(Old);
 
 
