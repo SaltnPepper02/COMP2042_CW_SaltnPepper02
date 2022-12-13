@@ -18,7 +18,9 @@ import javafx.stage.Stage;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
-
+/**
+ * @author Richard Gan Soon Ching-modified
+ */
 class GameScene {
     private static int HEIGHT = 700;
     private static int n = 4;
@@ -36,7 +38,11 @@ class GameScene {
         return score;
     }
 
-    public void setDimension(String string){// set grid
+    /**
+     * set the dimension for the grid
+     * @param string
+     */
+    static void setDimension(String string){// set grid
         if (string == "3x3"){
             n = 3;
 
@@ -54,11 +60,10 @@ class GameScene {
     }
 
 
-    static void setN(int number) {
-        n = number;
-        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
-    }
-
+    /**
+     * Update array with new one
+     * @param array
+     */
     private void updateArray (int[][] array){// used to compare before and after key pressed
         for(int i=0; i<n; i++){// it keeps updating with every key pressed
             for(int j=0; j<n; j++){
@@ -71,6 +76,9 @@ class GameScene {
         return LENGTH;
     }
 
+    /**
+     * spawn tile
+     */
     private void randomFillNumber() {
 
         Cell[][] emptyCells = new Cell[n][n];
@@ -119,6 +127,10 @@ class GameScene {
             emptyCells[xCell][yCell].setColorByNumber(4);
         }
     }
+
+    /**
+     * spawn a set number of tile
+     */
     public void spawnNumber(){//test
         if (n == 5){
             randomFillNumber();
@@ -134,6 +146,10 @@ class GameScene {
         }
     }
 
+    /**
+     * check if there is any empty cell
+     * @return
+     */
     private int  haveEmptyCell() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -146,8 +162,15 @@ class GameScene {
         return -1;
     }
 
-    
-    
+
+    /**
+     * send new coordinates when move left
+     * @param i
+     * @param j
+     * @param direct
+     * @return coordinate
+     * @return -1
+     */
     private int passDestinationLeft(int i, int j, char direct){//split passDestination into 4 methods
     	int coordinate = j;
         if (direct == 'l') {
@@ -163,7 +186,14 @@ class GameScene {
         }
         return -1;
     }
-    
+    /**
+     * send new coordinates when move right
+     * @param i
+     * @param j
+     * @param direct
+     * @return coordinate
+     * @return -1
+     */
     private int passDestinationRight(int i, int j, char direct) {
     	int coordinate = j;
         if (direct == 'r') {
@@ -179,6 +209,14 @@ class GameScene {
         }
         return -1;
     }
+    /**
+     * send new coordinates when move down
+     * @param i
+     * @param j
+     * @param direct
+     * @return coordinate
+     * @return -1
+     */
     private int passDestinationDown(int i, int j, char direct) {
     	int coordinate = i;
     	if (direct == 'd') {
@@ -196,6 +234,14 @@ class GameScene {
     	return -1;
             
     }
+    /**
+     * send new coordinates when move up
+     * @param i
+     * @param j
+     * @param direct
+     * @return coordinate
+     * @return -1
+     */
     private int passDestinationUp(int i, int j, char direct) {
     	int coordinate = i;
         if (direct == 'u') {
@@ -212,6 +258,9 @@ class GameScene {
         return -1;
     }
 
+    /**
+     * move tiles to the left
+     */
     private void moveLeft() {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < n; j++) {
@@ -222,7 +271,9 @@ class GameScene {
             }
         }
     }
-
+    /**
+     * move tiles to the right
+     */
     private void moveRight() {
         for (int i = 0; i < n; i++) {
             for (int j = n - 1; j >= 0; j--) {
@@ -233,7 +284,9 @@ class GameScene {
             }
         }
     }
-
+    /**
+     * move tiles to the up
+     */
     private void moveUp() {
         for (int j = 0; j < n; j++) {
             for (int i = 1; i < n; i++) {
@@ -245,7 +298,9 @@ class GameScene {
         }
 
     }
-
+    /**
+     * move tiles to the down
+     */
     private void moveDown() {
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
@@ -258,6 +313,14 @@ class GameScene {
 
     }
 
+    /**
+     * check if there are the two same numbers at des tile when move horizontally and return true if they are
+     * @param i
+     * @param j
+     * @param des
+     * @param sign
+     * @return
+     */
     private boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0) {
             if (cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
@@ -268,6 +331,13 @@ class GameScene {
         return false;
     }
 
+    /**
+     * Merge the numbers together and add them to score horizontally
+     * @param i
+     * @param j
+     * @param des
+     * @param sign
+     */
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
@@ -281,7 +351,14 @@ class GameScene {
         }
         
     }
-
+    /**
+     * check if there are the two same numbers at des tile when move vertically and return true if they are
+     * @param i
+     * @param j
+     * @param des
+     * @param sign
+     * @return
+     */
     private boolean isValidDesV(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0)
             if (cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
@@ -290,7 +367,13 @@ class GameScene {
             }
         return false;
     }
-
+    /**
+     * Merge the numbers together and add them to score vertically
+     * @param i
+     * @param j
+     * @param des
+     * @param sign
+     */
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
@@ -315,6 +398,9 @@ class GameScene {
         return false;
     }
 
+    /**check if you are able to move or not
+     * @return
+     */
     private boolean canNotMove() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -327,6 +413,14 @@ class GameScene {
     }
 
 
+    /**
+     * Start the game
+     * @param gameScene
+     * @param root
+     * @param primaryStage
+     * @param endGameScene
+     * @param endGameRoot
+     */
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root = root;
 

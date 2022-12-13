@@ -24,7 +24,9 @@ import java.util.ResourceBundle;
 import static com.example.demo.Account.makeNewAccount;
 import static com.example.demo.Account.readFile;
 import static com.example.demo.Main.*;
-
+/**
+ * @author Richard Gan Soon Ching-modified
+ */
 public class Controller implements Initializable {
     private Stage stage;
     private Scene scene;
@@ -45,12 +47,21 @@ public class Controller implements Initializable {
     Main main = new Main();
 
 
+    /**
+     * initialize dropdown box
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         myChoiceBox.getItems().addAll(dimensions);
         myChoiceBox.setOnAction(this::dimensionSelection);
     }
 
+    /**
+     * select dimension with dropdown box
+     * @param event
+     */
     private void dimensionSelection(ActionEvent event) {//used to set grid
         String Dimension = myChoiceBox.getValue();
         GameScene gs = new GameScene();
@@ -58,7 +69,11 @@ public class Controller implements Initializable {
     }
 
 
-
+    /**
+     * Check if textfield is empty and if textfield contain any space, if not start game
+     * @param event
+     * @throws IOException
+     */
     public void whenStartPushed(ActionEvent event) throws IOException {// start button
         username = myTextField.getText();
         if (username.isEmpty() == true) {
@@ -73,6 +88,11 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Bring up Leaderboard scene
+     * @param event
+     * @throws IOException
+     */
     public void whenLBPushed(ActionEvent event) throws IOException {// Leaderboard button
         readFile();
         Parent root = FXMLLoader.load(getClass().getResource("leaderboard.fxml"));
@@ -81,12 +101,22 @@ public class Controller implements Initializable {
         pstage.setScene(scene2);
         pstage.show();
     }
+
+    /**
+     * color picker to change background
+     * @param event
+     * @throws IOException
+     */
     public void colorChange(ActionEvent event) throws IOException{// used to change background
         myColor = myColorPicker.getValue();
     }
 
 
-
+    /**
+     * Close pstage
+     * @param event
+     * @throws IOException
+     */
     public void whenQuitPushed(ActionEvent event) throws IOException {// quit button
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Quit");

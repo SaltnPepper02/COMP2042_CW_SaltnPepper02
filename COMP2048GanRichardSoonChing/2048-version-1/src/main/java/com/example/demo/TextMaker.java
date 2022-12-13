@@ -12,12 +12,24 @@ class TextMaker {
 
     }
 
+    /**
+     * get single instance for textmaker
+     * @return
+     */
     static TextMaker getSingleInstance() {
         if (singleInstance == null)
             singleInstance = new TextMaker();
         return singleInstance;
     }
 
+    /**
+     * make the text for the tiles
+     * @param input
+     * @param xCell
+     * @param yCell
+     * @param root
+     * @return
+     */
     Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         double fontSize = (3 * length) / 7.0;
@@ -29,6 +41,11 @@ class TextMaker {
         return text;
     }
 
+    /**
+     * change the text for the tiles
+     * @param first
+     * @param second
+     */
     static void changeTwoText(Text first, Text second) {
         String temp;
         temp = first.getText();

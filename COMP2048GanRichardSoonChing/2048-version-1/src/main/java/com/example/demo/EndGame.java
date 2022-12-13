@@ -24,7 +24,9 @@ import java.util.Optional;
 import static com.example.demo.Account.*;
 import static com.example.demo.Controller.username;
 
-
+/**
+ * @author Richard Gan Soon Ching-modified
+ */
 public class EndGame {
     private static EndGame singleInstance = null;
     private Stage stage;
@@ -39,16 +41,32 @@ public class EndGame {
     }
 
 
-    
+    /**
+     * Win scene
+     * @param endGameScene
+     * @param root
+     * @param primaryStage
+     * @param score
+     */
     public void Win(Scene endGameScene, Group root, Stage primaryStage, long score) {//win screen
         Text text = new Text("YOU WIN");
         text.relocate(250,250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
 
+        makeNewAccount(username, score);// add new account to the array list
+        readFile();// input all usernames and score into arraylist
+        clearFile();// clear file for new list
+        write2File();// sort and write into text file
+
+        Text scoreLine = new Text("Score:");
+        scoreLine.relocate(250,450);
+        scoreLine.setFont(Font.font(80));
+        root.getChildren().add(scoreLine);
+
         Text scoreText = new Text(score+"");
         scoreText.setFill(Color.BLACK);
-        scoreText.relocate(350,500);
+        scoreText.relocate(500,450);
         scoreText.setFont(Font.font(80));
         root.getChildren().add(scoreText);
 
@@ -106,8 +124,15 @@ public class EndGame {
 
 
     }
-    
 
+
+    /**
+     * Game over Scene
+     * @param endGameScene
+     * @param root
+     * @param primaryStage
+     * @param score
+     */
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){//may be able to split this
         Text text = new Text("GAME OVER");
         text.relocate(250,200);
@@ -125,7 +150,9 @@ public class EndGame {
         scoreText.setFont(Font.font(80));
         root.getChildren().add(scoreText);
 
-        makeNewAccount(username, score);// add new account to the array list
+        if(accountHaveBeenExist(username) == null) {
+            makeNewAccount(username, score);// add new account to the array list
+        }
         readFile();// input all usernames and score into arraylist
         clearFile();// clear file for new list
         write2File();// sort and write into text file

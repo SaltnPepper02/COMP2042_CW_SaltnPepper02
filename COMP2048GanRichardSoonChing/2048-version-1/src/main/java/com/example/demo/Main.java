@@ -22,6 +22,9 @@ import java.util.Scanner;
 
 import static com.example.demo.Controller.myColor;
 
+/**
+ * @author Richard Gan Soon Ching-modified
+ */
 public class Main extends Application {
     static final int WIDTH = 900;
     static final int HEIGHT = 700;

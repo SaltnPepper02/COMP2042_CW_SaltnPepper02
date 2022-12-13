@@ -23,6 +23,9 @@ import java.util.ResourceBundle;
 import static com.example.demo.Account.accounts;
 import static com.example.demo.Main.pstage;
 
+/**
+ * @author Richard Gan Soon Ching
+ */
 public class Controller2 implements Initializable {// used to set Leaderboard
 
     @FXML
@@ -33,6 +36,11 @@ public class Controller2 implements Initializable {// used to set Leaderboard
     @FXML
     private TableColumn<Account, Long> SColumn;
 
+    /**
+     * back to menu
+     * @param event
+     * @throws IOException
+     */
     public void whenBackPushed(ActionEvent event) throws IOException{
         accounts.clear();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
@@ -43,6 +51,12 @@ public class Controller2 implements Initializable {// used to set Leaderboard
     }
 
     ObservableList<Account> list = FXCollections.observableArrayList(accounts);
+
+    /**
+     * set table view for leaderboard
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("userName"));

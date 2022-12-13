@@ -4,36 +4,63 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @author Richard Gan Soon Ching
+ * @author Richard Gan Soon Ching-modified
  */
 public class Account implements Comparable<Account> {
     private long score = 0;
     private String userName ;
     public static ArrayList<Account> accounts = new ArrayList<>();
 
+    /**
+     * Account contructor
+     * @param userName
+     * @param score
+     */
     public Account(String userName, long score){
         this.userName = userName;
         this.score = score;
     }
 
+    /**
+     * Compare score
+     * @param o the object to be compared.
+     * @return
+     */
     @Override
     public int compareTo(Account o) {
         return Long.compare(o.getScore(), score);
     }
 
+    /**
+     * setter for score
+     * @param score
+     */
     public void setScore(long score) {
         this.score = score;
     }
 
+    /**
+     * getter for score
+     * @return score
+     */
     public long getScore() {
         return score;
     }
 
+    /**
+     * getter for userName
+     * @return userName
+     */
     public String getUserName() {
         return userName;
     }
 
 
+    /**
+     * check if there are duplicate accounts in list
+     * @param userName
+     * @return
+     */
     static Account accountHaveBeenExist(String userName){
         for(Account account : accounts){
             if(account.getUserName().equals(userName)){
@@ -44,11 +71,20 @@ public class Account implements Comparable<Account> {
 
     }
 
+    /**
+     * @return String
+     */
     public String toString()
     {
         return this.userName + " " + this.score;
     }
 
+    /**A
+     * Makes acccount and adds to ArrayList
+     * @param userName
+     * @param score
+     * @return
+     */
     static Account makeNewAccount(String userName, long score){
         Account account = new Account(userName, score);
         accounts.add(account);
@@ -56,6 +92,9 @@ public class Account implements Comparable<Account> {
         return account;
     }
 
+    /**
+     * Clear Text file
+     */
     public static void clearFile()
     {
         try{
@@ -68,6 +107,10 @@ public class Account implements Comparable<Account> {
             System.out.println("Exception have been caught");
         }
     }
+
+    /**
+     * Read from text file to ArrayList
+     */
     public static void readFile() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("Leaderboard.txt"));
@@ -83,11 +126,16 @@ public class Account implements Comparable<Account> {
         }
 
     }
+
+    /**
+     * Sort ArrayList and write to file, then clears ArrayList
+     */
     public static void write2File(){
         try{
             FileWriter fw = new FileWriter("Leaderboard.txt", true);
 
             Collections.sort(accounts);
+
             for(Account accounts: accounts){
                 fw.write(accounts + System.lineSeparator());
             }
