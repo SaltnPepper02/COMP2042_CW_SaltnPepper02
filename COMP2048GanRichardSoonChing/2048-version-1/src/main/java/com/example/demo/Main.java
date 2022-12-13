@@ -1,4 +1,4 @@
-package com.example.demo;
+    package com.example.demo;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -23,6 +23,8 @@ import java.util.Scanner;
 import static com.example.demo.Controller.myColor;
 
 /**
+ * This class is the main class
+ *
  * @author Richard Gan Soon Ching-modified
  */
 public class Main extends Application {

@@ -25,6 +25,8 @@ import static com.example.demo.Account.*;
 import static com.example.demo.Controller.username;
 
 /**
+ * This class is for End Game screen
+ *
  * @author Richard Gan Soon Ching-modified
  */
 public class EndGame {

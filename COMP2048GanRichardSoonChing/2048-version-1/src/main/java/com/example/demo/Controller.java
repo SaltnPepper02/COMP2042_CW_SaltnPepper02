@@ -25,6 +25,8 @@ import static com.example.demo.Account.makeNewAccount;
 import static com.example.demo.Account.readFile;
 import static com.example.demo.Main.*;
 /**
+ * This class is to control the main maenu
+ *
  * @author Richard Gan Soon Ching-modified
  */
 public class Controller implements Initializable {

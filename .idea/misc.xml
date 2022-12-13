@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/COMP2048GanRichardSoonChing/javadoc" />
-    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="true" />
-    <option name="OPTION_INCLUDE_LIBS" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/COMP2048GanRichardSoonChing/2048-version-1" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="19" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

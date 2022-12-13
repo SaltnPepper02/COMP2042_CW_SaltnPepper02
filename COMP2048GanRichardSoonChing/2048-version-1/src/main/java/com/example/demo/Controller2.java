@@ -24,6 +24,8 @@ import static com.example.demo.Account.accounts;
 import static com.example.demo.Main.pstage;
 
 /**
+ * This class is to control the leaderboard screen
+ *
  * @author Richard Gan Soon Ching
  */
 public class Controller2 implements Initializable {// used to set Leaderboard

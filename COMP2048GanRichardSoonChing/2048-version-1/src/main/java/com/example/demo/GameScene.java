@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 /**
+ * This class is to create the game screen and game logic
+ *
  * @author Richard Gan Soon Ching-modified
  */
 class GameScene {

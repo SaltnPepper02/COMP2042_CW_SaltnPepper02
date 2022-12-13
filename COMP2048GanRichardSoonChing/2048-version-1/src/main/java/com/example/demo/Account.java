@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.*;
 
 /**
+ * This class is to create and input accounts
+ *
  * @author Richard Gan Soon Ching-modified
  */
 public class Account implements Comparable<Account> {
@@ -19,6 +21,10 @@ public class Account implements Comparable<Account> {
     public Account(String userName, long score){
         this.userName = userName;
         this.score = score;
+    }
+
+    public ArrayList<Account> getAccounts(){
+        return accounts;
     }
 
     /**

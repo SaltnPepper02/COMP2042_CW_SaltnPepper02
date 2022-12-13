@@ -6,20 +6,43 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+/**
+ * This class is for tile design
+ *
+ * @author Richard Gan Soon Ching
+ */
 public class Cell {
     private Rectangle rectangle;
     private Group root;
     private Text textClass;
     private boolean modify = false;
 
+    /**
+     * setter for modify
+     *
+     * @param modify
+     */
     void setModify(boolean modify) {
         this.modify = modify;
     }
 
+    /**
+     * getter for modify
+     *
+     * @return modify
+     */
     boolean getModify() {
         return modify;
     }
 
+    /**
+     * Set cell design
+     *
+     * @param x
+     * @param y
+     * @param scale
+     * @param root
+     */
     Cell(double x, double y, double scale, Group root) {
         rectangle = new Rectangle();
         rectangle.setX(x);
@@ -34,10 +57,20 @@ public class Cell {
         root.getChildren().add(rectangle);
     }
 
+    /**
+     * setter for textClass
+     *
+     * @param textClass
+     */
     void setTextClass(Text textClass) {
         this.textClass = textClass;
     }
 
+    /**
+     * Change the cell
+     *
+     * @param cell
+     */
     void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
         root.getChildren().remove(cell.getTextClass());
@@ -53,6 +86,11 @@ public class Cell {
         cell.setColorByNumber(cell.getNumber());
     }
 
+    /**
+     * adder for cell
+     *
+     * @param cell
+     */
     void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
         textClass.setText("0");
@@ -61,6 +99,11 @@ public class Cell {
         setColorByNumber(getNumber());
     }
 
+    /**
+     * set tile color
+     *
+     * @param number
+     */
     void setColorByNumber(int number) {
         switch (number) {
             case 0:
@@ -104,18 +147,38 @@ public class Cell {
 
     }
 
+    /**
+     * getter for X
+     *
+     * @return rectangle.getX()
+     */
     double getX() {
         return rectangle.getX();
     }
 
+    /**
+     * getter for Y
+     *
+     * @return rectangle.getY()
+     */
     double getY() {
         return rectangle.getY();
     }
 
+    /**
+     * getter for number in tile
+     *
+     * @return
+     */
     int getNumber() {
         return Integer.parseInt(textClass.getText());
     }
 
+    /**
+     * Write number into tile
+     *
+     * @return
+     */
     private Text getTextClass() {
         return textClass;
     }
