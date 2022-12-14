@@ -2,22 +2,19 @@ package com.example.demo;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static com.example.demo.Account.accounts;
@@ -40,12 +37,12 @@ public class Controller2 implements Initializable {// used to set Leaderboard
 
     /**
      * Go back to menu
-     * @param event
-     * @throws IOException
+     * @param event on event
+     * @throws IOException if there is no menu to go back to
      */
     public void whenBackPushed(ActionEvent event) throws IOException{
         accounts.clear();
-        Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menu.fxml")));
         pstage.setTitle("Welcome");
         Scene scene = new Scene(root);
         pstage.setScene(scene);
@@ -56,8 +53,8 @@ public class Controller2 implements Initializable {// used to set Leaderboard
 
     /**
      * set table view for leaderboard
-     * @param url
-     * @param resourceBundle
+     * @param url pass url
+     * @param resourceBundle pass resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

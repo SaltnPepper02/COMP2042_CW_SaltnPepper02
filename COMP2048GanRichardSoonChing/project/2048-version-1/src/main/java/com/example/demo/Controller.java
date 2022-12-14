@@ -4,35 +4,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.example.demo.Account.makeNewAccount;
 import static com.example.demo.Account.readFile;
-import static com.example.demo.Main.*;
+import static com.example.demo.Main.pstage;
 /**
  * This class is to control the main maenu
  *
  * @author Richard Gan Soon Ching-modified
  */
 public class Controller implements Initializable {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     public static Color myColor = Color.rgb(189, 177, 92);
     @FXML
     private ColorPicker myColorPicker;
@@ -51,8 +39,8 @@ public class Controller implements Initializable {
 
     /**
      * initialize dropdown box
-     * @param arg0
-     * @param arg1
+     * @param arg0 pass url
+     * @param arg1 pass ResourceBundle
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -62,23 +50,22 @@ public class Controller implements Initializable {
 
     /**
      * select dimension with dropdown box
-     * @param event
+     * @param event on event
      */
     private void dimensionSelection(ActionEvent event) {//used to set grid
         String Dimension = myChoiceBox.getValue();
-        GameScene gs = new GameScene();
-        gs.setDimension(Dimension);
+        new GameScene();
+        GameScene.setDimension(Dimension);
     }
 
 
     /**
      * Check if textfield is empty and if textfield contain any space, if not start game
-     * @param event
-     * @throws IOException
+     * @param event on event
      */
-    public void whenStartPushed(ActionEvent event) throws IOException {// start button
+    public void whenStartPushed(ActionEvent event) {// start button
         username = myTextField.getText();
-        if (username.isEmpty() == true) {
+        if (username.isEmpty()) {
             myLabel.setText("Please Enter a username");
         }
         else if(username.matches(".*\\s.*")){
@@ -92,8 +79,8 @@ public class Controller implements Initializable {
 
     /**
      *Change scene to LeaderBoard
-     * @param event
-     * @throws IOException
+     * @param event on event
+     * @throws IOException if there isnt a file to be access
      */
     public void whenLBPushed(ActionEvent event) throws IOException {// Leaderboard button
         readFile();
@@ -106,20 +93,18 @@ public class Controller implements Initializable {
 
     /**
      * color picker to change background
-     * @param event
-     * @throws IOException
+     * @param event on event
      */
-    public void colorChange(ActionEvent event) throws IOException{// used to change background
+    public void colorChange(ActionEvent event) {// used to change background
         myColor = myColorPicker.getValue();
     }
 
 
     /**
      * Close the window
-     * @param event
-     * @throws IOException
+     * @param event on event
      */
-    public void whenQuitPushed(ActionEvent event) throws IOException {// quit button
+    public void whenQuitPushed(ActionEvent event) {// quit button
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Quit");
         alert.setHeaderText("You are about to QUIT");

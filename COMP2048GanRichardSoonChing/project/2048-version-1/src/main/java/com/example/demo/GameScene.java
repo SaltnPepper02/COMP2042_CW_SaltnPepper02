@@ -24,11 +24,11 @@ import java.util.Random;
  * @author Richard Gan Soon Ching-modified
  */
 class GameScene {
-    private static int HEIGHT = 700;
+    private static final int HEIGHT = 700;
     private static int n = 4;
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
-    private TextMaker textMaker = TextMaker.getSingleInstance();
+    private final TextMaker textMaker = TextMaker.getSingleInstance();
     private Cell[][] cells = new Cell[n][n];
     private Group root;
     private static long score = 0;
@@ -42,21 +42,14 @@ class GameScene {
 
     /**
      * set the dimension for the grid
-     * @param string
+     * @param string get the string from Controller
      */
     static void setDimension(String string){// set grid
-        if (string == "3x3"){
-            n = 3;
-
-        }
-        else if (string == "5x5"){
-            n = 5;
-        }
-        else if (string == "6x6"){
-            n = 6;
-        }
-        else{
-            n = 4;
+        switch (string) {
+            case "3x3" -> n = 3;
+            case "5x5" -> n = 5;
+            case "6x6" -> n = 6;
+            default -> n = 4;
         }
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     }
@@ -65,7 +58,7 @@ class GameScene {
     /**
      * Update outdated array with current one
      *
-     * @param array
+     * @param array input old and new array to check if they are identical
      */
     private void updateArray (int[][] array){// used to compare before and after key pressed
         for(int i=0; i<n; i++){// it keeps updating with every key pressed
@@ -117,9 +110,7 @@ class GameScene {
 
         Text text;
         Random random = new Random();
-        boolean putTwo = true;
-        if (random.nextInt() % 2 == 0)
-            putTwo = false;
+        boolean putTwo = random.nextInt() % 2 != 0;
         int xCell, yCell;
             xCell = random.nextInt(aForBound+1);
             yCell = random.nextInt(bForBound+1);
@@ -156,7 +147,7 @@ class GameScene {
 
     /**
      * check if there is any empty cell on the grid
-     * @return
+     * @return 1 or 0 or -1 to check
      */
     private int  haveEmptyCell() {
         for (int i = 0; i < n; i++) {
@@ -174,15 +165,12 @@ class GameScene {
     /**
      *
      * send new coordinates when move left
-     * @param i
-     * @param j
-     * @param direct
+     * @param i this is used to get the cell address
+     * @param j this is used to set coordinate
      * @return coordinate
-     * @return -1
      */
-    private int passDestinationLeft(int i, int j, char direct){//split passDestination into 4 methods
+    private int passDestinationLeft(int i, int j){//split passDestination into 4 methods
     	int coordinate = j;
-        if (direct == 'l') {
             for (int k = j - 1; k >= 0; k--) {
                 if (cells[i][k].getNumber() != 0) {
                     coordinate = k + 1;
@@ -192,20 +180,16 @@ class GameScene {
                 }
             }
             return coordinate;
-        }
-        return -1;
+
     }
     /**
      * send new coordinates when move right
-     * @param i
-     * @param j
-     * @param direct
+     * @param i this is used to get the cell address
+     * @param j this is used to set coordinate
      * @return coordinate
-     * @return -1
      */
-    private int passDestinationRight(int i, int j, char direct) {
+    private int passDestinationRight(int i, int j) {
     	int coordinate = j;
-        if (direct == 'r') {
             for (int k = j + 1; k <= n - 1; k++) {
                 if (cells[i][k].getNumber() != 0) {
                     coordinate = k - 1;
@@ -215,20 +199,15 @@ class GameScene {
                 }
             }
             return coordinate;
-        }
-        return -1;
     }
     /**
      * send new coordinates when move down
-     * @param i
-     * @param j
-     * @param direct
+     * @param i this is used to set coordinate
+     * @param j this is used to get the cell address
      * @return coordinate
-     * @return -1
      */
-    private int passDestinationDown(int i, int j, char direct) {
+    private int passDestinationDown(int i, int j) {
     	int coordinate = i;
-    	if (direct == 'd') {
            for (int k = i + 1; k <= n - 1; k++) {
                if (cells[k][j].getNumber() != 0) {
                    coordinate = k - 1;
@@ -239,21 +218,17 @@ class GameScene {
                }
            }
     		return coordinate;
-    	}
-    	return -1;
+
             
     }
     /**
      * send new coordinates when move up
-     * @param i
-     * @param j
-     * @param direct
+     * @param i this is used to set coordinate
+     * @param j this is used to get the cell address
      * @return coordinate
-     * @return -1
      */
-    private int passDestinationUp(int i, int j, char direct) {
+    private int passDestinationUp(int i, int j) {
     	int coordinate = i;
-        if (direct == 'u') {
             for (int k = i - 1; k >= 0; k--) {
                 if (cells[k][j].getNumber() != 0) {
                     coordinate = k + 1;
@@ -263,8 +238,7 @@ class GameScene {
                 }
             }
             return coordinate;
-        }
-        return -1;
+
     }
 
     /**
@@ -273,7 +247,7 @@ class GameScene {
     private void moveLeft() {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < n; j++) {
-                moveHorizontally(i, j, passDestinationLeft(i, j, 'l'), -1);
+                moveHorizontally(i, j, passDestinationLeft(i, j), -1);
             }
             for (int j = 0; j < n; j++) {
                 cells[i][j].setModify(false);
@@ -286,7 +260,7 @@ class GameScene {
     private void moveRight() {
         for (int i = 0; i < n; i++) {
             for (int j = n - 1; j >= 0; j--) {
-                moveHorizontally(i, j, passDestinationRight(i, j, 'r'), 1);
+                moveHorizontally(i, j, passDestinationRight(i, j), 1);
             }
             for (int j = 0; j < n; j++) {
                 cells[i][j].setModify(false);
@@ -299,7 +273,7 @@ class GameScene {
     private void moveUp() {
         for (int j = 0; j < n; j++) {
             for (int i = 1; i < n; i++) {
-                moveVertically(i, j, passDestinationUp(i, j, 'u'), -1);
+                moveVertically(i, j, passDestinationUp(i, j), -1);
             }
             for (int i = 0; i < n; i++) {
                 cells[i][j].setModify(false);
@@ -313,7 +287,7 @@ class GameScene {
     private void moveDown() {
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
-                moveVertically(i, j, passDestinationDown(i, j, 'd'), 1);
+                moveVertically(i, j, passDestinationDown(i, j), 1);
             }
             for (int i = 0; i < n; i++) {
                 cells[i][j].setModify(false);
@@ -324,28 +298,26 @@ class GameScene {
 
     /**
      * check if there are the two same numbers at des tile when move horizontally and return true if they are
-     * @param i
-     * @param j
-     * @param des
-     * @param sign
-     * @return
+     * @param i cell address
+     * @param j cell address
+     * @param des cell address
+     * @param sign cell address
+     * @return true if destination is valid, false if it isnt
      */
     private boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0) {
-            if (cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
-                    && cells[i][des + sign].getNumber() != 0) {
-                return true;
-            }
+            return cells[i][des + sign].getNumber() == cells[i][j].getNumber() && cells[i][des + sign].getModify()
+                    && cells[i][des + sign].getNumber() != 0;
         }
         return false;
     }
 
     /**
      * Merge the numbers together and add them to score horizontally
-     * @param i
-     * @param j
-     * @param des
-     * @param sign
+     * @param i cell address
+     * @param j cell address
+     * @param des cell address
+     * @param sign cell address
      */
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
@@ -362,26 +334,24 @@ class GameScene {
     }
     /**
      * check if there are the two same numbers at des tile when move vertically and return true if they are
-     * @param i
-     * @param j
-     * @param des
-     * @param sign
-     * @return
+     * @param i cell address
+     * @param j cell address
+     * @param des cell address
+     * @param sign cell address
+     * @return true if destination is valid, false if it isnt
      */
     private boolean isValidDesV(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0)
-            if (cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
-                    && cells[des + sign][j].getNumber() != 0) {
-                return true;
-            }
+            return cells[des + sign][j].getNumber() == cells[i][j].getNumber() && cells[des + sign][j].getModify()
+                    && cells[des + sign][j].getNumber() != 0;
         return false;
     }
     /**
      * Merge the numbers together and add them to score vertically
-     * @param i
-     * @param j
-     * @param des
-     * @param sign
+     * @param i cell address
+     * @param j cell address
+     * @param des cell address
+     * @param sign cell address
      */
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
@@ -397,6 +367,11 @@ class GameScene {
         
     }
 
+    /**
+     * @param i cell address
+     * @param j cell address
+     * @return true of they are nearly the same number, false if it isnt
+     */
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
             if (cells[i + 1][j].getNumber() == cells[i][j].getNumber())
@@ -408,7 +383,7 @@ class GameScene {
     }
 
     /**check if you are able to move or not
-     * @return
+     * @return false if they are nearly the same number, true if they aren't
      */
     private boolean canNotMove() {
         for (int i = 0; i < n; i++) {
@@ -424,11 +399,11 @@ class GameScene {
 
     /**
      * Start the game
-     * @param gameScene
-     * @param root
-     * @param primaryStage
-     * @param endGameScene
-     * @param endGameRoot
+     * @param gameScene gameBackground
+     * @param root game cells
+     * @param primaryStage stage
+     * @param endGameScene end game scene
+     * @param endGameRoot end game root
      */
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root = root;
@@ -464,11 +439,11 @@ class GameScene {
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
         quitButton.relocate(750,450);
-        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        quitButton.setOnMouseClicked(new EventHandler<>() {
             /**
              * Ends the game
              *
-             * @param event
+             * @param event on event run the following
              */
             @Override
             public void handle(MouseEvent event) {
@@ -478,7 +453,7 @@ class GameScene {
                 alert.setContentText("Are you sure?");
 
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
+                if (result.get() == ButtonType.OK) {
                     primaryStage.setScene(endGameScene);
                     EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                     root.getChildren().clear();
@@ -494,52 +469,50 @@ class GameScene {
         randomFillNumber();
 
         updateArray(Old);
-        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, key ->{
-                Platform.runLater(() -> {
-                    int haveEmptyCell;
-                    if (key.getCode() == KeyCode.DOWN) {
-                        GameScene.this.moveDown();
-                    } else if (key.getCode() == KeyCode.UP) {
-                        GameScene.this.moveUp();
-                    } else if (key.getCode() == KeyCode.LEFT) {
-                        GameScene.this.moveLeft();
-                    } else if (key.getCode() == KeyCode.RIGHT) {
-                        GameScene.this.moveRight();
-                    }
+        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, key -> Platform.runLater(() -> {
+            int haveEmptyCell;
+            if (key.getCode() == KeyCode.DOWN) {
+                GameScene.this.moveDown();
+            } else if (key.getCode() == KeyCode.UP) {
+                GameScene.this.moveUp();
+            } else if (key.getCode() == KeyCode.LEFT) {
+                GameScene.this.moveLeft();
+            } else if (key.getCode() == KeyCode.RIGHT) {
+                GameScene.this.moveRight();
+            }
 
-                    scoreText.setText(score + "");
-                    updateArray(New);
-                    haveEmptyCell = GameScene.this.haveEmptyCell();
+            scoreText.setText(score + "");
+            updateArray(New);
+            haveEmptyCell = GameScene.this.haveEmptyCell();
 
-                    if (winscore == 2048) {//add win condition
-                    	primaryStage.setScene(endGameScene);
-                    	
-                    	EndGame.getInstance().Win(endGameScene, endGameRoot, primaryStage, score);
-                        root.getChildren().clear();
-                        score = 0;
-                    	
-                    }
+            if (winscore == 2048) {//add win condition
+                primaryStage.setScene(endGameScene);
 
-                    boolean check = false;
-                    if (haveEmptyCell == -1) {
-                        if (GameScene.this.canNotMove()) {
-                            primaryStage.setScene(endGameScene);
+                EndGame.getInstance().Win(endGameRoot, primaryStage, score);
+                root.getChildren().clear();
+                score = 0;
 
-                            EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
-                            root.getChildren().clear();
-                            score = 0;
-                        }
-                    }
-                    else if(haveEmptyCell == 1 & (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT)){// this line need something else
-                        check = Arrays.deepEquals(Old,New);// check if there is any changes after key released
-                        if(check == false) {// if there are spawn number
-                            randomFillNumber();
-                            updateArray(Old);
+            }
+
+            boolean check;
+            if (haveEmptyCell == -1) {
+                if (GameScene.this.canNotMove()) {
+                    primaryStage.setScene(endGameScene);
+
+                    EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                    root.getChildren().clear();
+                    score = 0;
+                }
+            }
+            else if(haveEmptyCell == 1 & (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT)){// this line need something else
+                check = Arrays.deepEquals(Old,New);// check if there is any changes after key released
+                if(!check) {// if there are spawn number
+                    randomFillNumber();
+                    updateArray(Old);
 
 
-                        }}
+                }}
 
-                });
-            });
+        }));
     }
 }

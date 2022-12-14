@@ -3,7 +3,6 @@ package com.example.demo;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -15,10 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Optional;
 
 import static com.example.demo.Account.*;
@@ -31,7 +27,6 @@ import static com.example.demo.Controller.username;
  */
 public class EndGame {
     private static EndGame singleInstance = null;
-    private Stage stage;
     private EndGame(){
 
     }
@@ -45,12 +40,11 @@ public class EndGame {
 
     /**
      * Win scene
-     * @param endGameScene
-     * @param root
-     * @param primaryStage
-     * @param score
+     * @param root root for endgame
+     * @param primaryStage stage for the scene
+     * @param score game score
      */
-    public void Win(Scene endGameScene, Group root, Stage primaryStage, long score) {//win screen
+    public void Win(Group root, Stage primaryStage, long score) {//win screen
         Text text = new Text("YOU WIN");
         text.relocate(250,250);
         text.setFont(Font.font(80));
@@ -81,7 +75,7 @@ public class EndGame {
             /**
              * Restart button when game ends. Bring back to main menu
              *
-             * @param event
+             * @param event on event
              */
             @Override
             public void handle(MouseEvent event) {
@@ -93,7 +87,7 @@ public class EndGame {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     root.getChildren().clear();
-                    Parent root = null;
+                    Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("menu.fxml"));
                     } catch (IOException e) {
@@ -117,7 +111,7 @@ public class EndGame {
             /**
              * Quit Button when game ends
              *
-             * @param event
+             * @param event on event
              */
             @Override
             public void handle(MouseEvent event) {
@@ -141,10 +135,10 @@ public class EndGame {
     /**
      * Game over Scene
      *
-     * @param endGameScene
-     * @param root
-     * @param primaryStage
-     * @param score
+     * @param endGameScene end game background scene
+     * @param root root for end game
+     * @param primaryStage stage for scene
+     * @param score game score
      */
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){//may be able to split this
         Text text = new Text("GAME OVER");
@@ -175,19 +169,16 @@ public class EndGame {
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
         quitButton.relocate(400,550);
-        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Quit Dialog");
-                alert.setHeaderText("Quit from this page");
-                alert.setContentText("Are you sure?");
+        quitButton.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Quit Dialog");
+            alert.setHeaderText("Quit from this page");
+            alert.setContentText("Are you sure?");
 
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    root.getChildren().clear();
-                    primaryStage.close();
-                }
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                root.getChildren().clear();
+                primaryStage.close();
             }
         });
         Button restartButton = new Button("RESTART");//implement this button
@@ -206,7 +197,7 @@ public class EndGame {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     root.getChildren().clear();
-                    Parent root = null;
+                    Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("menu.fxml"));
                     } catch (IOException e) {

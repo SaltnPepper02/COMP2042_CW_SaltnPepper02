@@ -1,24 +1,15 @@
     package com.example.demo;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.ButtonType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
-
-import java.util.Optional;
-import java.util.Scanner;
 
 import static com.example.demo.Controller.myColor;
 
@@ -32,7 +23,6 @@ public class Main extends Application {
     static final int HEIGHT = 700;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-    private static Scanner input= new Scanner(System.in);
 
     Group endgameRoot = new Group();
     Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
@@ -41,7 +31,7 @@ public class Main extends Application {
 
     /**
      * setter for GameScene
-     * @param gameScene
+     * @param gameScene gameScene
      */
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
@@ -59,7 +49,7 @@ public class Main extends Application {
 
     /**
      * setter for gameRoot
-     * @param gameRoot
+     * @param gameRoot gameRoot
      */
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
@@ -76,7 +66,7 @@ public class Main extends Application {
 
     /**
      * setter for pStage
-     * @param pstage
+     * @param pstage PrimaryStage
      */
     private void setPStage(Stage pstage){
         Main.pstage = pstage;
@@ -85,8 +75,8 @@ public class Main extends Application {
 
     /**
      * This sets the stage
-     * @param primaryStage
-     * @throws Exception
+     * @param primaryStage the stage for the scene
+     * @throws Exception if unable to run
      */
     @Override
     public void start(Stage primaryStage) throws Exception {// implement menu here

@@ -14,7 +14,7 @@ class TextMaker {
 
     /**
      * get single instance for textmaker
-     * @return
+     * @return singleInstance
      */
     static TextMaker getSingleInstance() {
         if (singleInstance == null)
@@ -28,7 +28,7 @@ class TextMaker {
      * @param xCell
      * @param yCell
      * @param root
-     * @return
+     * @return text
      */
     Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();

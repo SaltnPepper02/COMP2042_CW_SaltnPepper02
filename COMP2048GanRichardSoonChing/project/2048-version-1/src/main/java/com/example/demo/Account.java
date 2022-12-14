@@ -9,14 +9,14 @@ import java.util.*;
  * @author Richard Gan Soon Ching-modified
  */
 public class Account implements Comparable<Account> {
-    private long score = 0;
+    private long score;
     private String userName ;
     public static ArrayList<Account> accounts = new ArrayList<>();
 
     /**
      * Account contructor
-     * @param userName
-     * @param score
+     * @param userName game username
+     * @param score game score
      */
     public Account(String userName, long score){
         this.userName = userName;
@@ -30,7 +30,7 @@ public class Account implements Comparable<Account> {
     /**
      * Compares score
      * @param o the object to be compared.
-     * @return
+     * @return score difference
      */
     @Override
     public int compareTo(Account o) {
@@ -39,7 +39,7 @@ public class Account implements Comparable<Account> {
 
     /**
      * setter for score
-     * @param score
+     * @param score game score
      */
     public void setScore(long score) {
         this.score = score;
@@ -64,8 +64,8 @@ public class Account implements Comparable<Account> {
 
     /**
      * check if there are duplicate accounts in list
-     * @param userName
-     * @return
+     * @param userName gamme username
+     * @return account if there exist a duplicate, null if not
      */
     static Account accountHaveBeenExist(String userName){
         for(Account account : accounts){
@@ -89,9 +89,9 @@ public class Account implements Comparable<Account> {
 
     /**A
      * Makes acccount and adds to ArrayList
-     * @param userName
-     * @param score
-     * @return
+     * @param userName game username
+     * @param score game score
+     * @return account
      */
     static Account makeNewAccount(String userName, long score){
         Account account = new Account(userName, score);
