@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 /**
- * This class is to create the game screen and game logic
+ * This class is to create the game screen and apply the game logic
  *
  * @author Richard Gan Soon Ching-modified
  */
@@ -63,7 +63,8 @@ class GameScene {
 
 
     /**
-     * Update array with new one
+     * Update outdated array with current one
+     *
      * @param array
      */
     private void updateArray (int[][] array){// used to compare before and after key pressed
@@ -74,12 +75,17 @@ class GameScene {
         }
     }
 
+    /**
+     * getter for LENGTH
+     *
+     * @return LENGTH
+     */
     static double getLENGTH() {
         return LENGTH;
     }
 
     /**
-     * spawn tile
+     * spawn tile randomly on the grid. Can either be 2 or 4
      */
     private void randomFillNumber() {
 
@@ -131,7 +137,7 @@ class GameScene {
     }
 
     /**
-     * spawn a set number of tile
+     * spawn a set number of tile on the grid
      */
     public void spawnNumber(){//test
         if (n == 5){
@@ -149,7 +155,7 @@ class GameScene {
     }
 
     /**
-     * check if there is any empty cell
+     * check if there is any empty cell on the grid
      * @return
      */
     private int  haveEmptyCell() {
@@ -166,6 +172,7 @@ class GameScene {
 
 
     /**
+     *
      * send new coordinates when move left
      * @param i
      * @param j
@@ -458,6 +465,11 @@ class GameScene {
         root.getChildren().add(quitButton);
         quitButton.relocate(750,450);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            /**
+             * Ends the game
+             *
+             * @param event
+             */
             @Override
             public void handle(MouseEvent event) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

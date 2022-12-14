@@ -100,7 +100,7 @@ public class Cell {
     }
 
     /**
-     * set tile color
+     * set tile color when merge happens
      *
      * @param number
      */

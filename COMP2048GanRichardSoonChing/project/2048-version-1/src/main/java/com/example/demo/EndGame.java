@@ -78,6 +78,11 @@ public class EndGame {
         root.getChildren().add(restartButton);
         restartButton.relocate(400,600);
         restartButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            /**
+             * Restart button when game ends. Bring back to main menu
+             *
+             * @param event
+             */
             @Override
             public void handle(MouseEvent event) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -109,6 +114,11 @@ public class EndGame {
         root.getChildren().add(quitButton);
         quitButton.relocate(400,600);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            /**
+             * Quit Button when game ends
+             *
+             * @param event
+             */
             @Override
             public void handle(MouseEvent event) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -130,6 +140,7 @@ public class EndGame {
 
     /**
      * Game over Scene
+     *
      * @param endGameScene
      * @param root
      * @param primaryStage

@@ -47,19 +47,29 @@ public class Main extends Application {
         this.gameScene = gameScene;
     }
 
+    /**
+     * getter for gameScene
+     *
+     * @return gameScene
+     */
     public Scene getGameScene(){
         return gameScene;
     }
 
 
     /**
-     * setter for GameRoot
+     * setter for gameRoot
      * @param gameRoot
      */
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
     }
 
+    /**
+     * getter for gameRoot
+     *
+     * @return gameRoot
+     */
     public Group getGameRoot(){
         return gameRoot;
     }
@@ -70,10 +80,6 @@ public class Main extends Application {
      */
     private void setPStage(Stage pstage){
         Main.pstage = pstage;
-    }
-
-    public static Stage getPstage(){
-        return pstage;
     }
 
 
@@ -129,6 +135,11 @@ public class Main extends Application {
         game.game(gameScene, gameRoot, pstage, endGameScene, endgameRoot);
     }
 
+    /**
+     * The main method. Launches the entire code.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
 

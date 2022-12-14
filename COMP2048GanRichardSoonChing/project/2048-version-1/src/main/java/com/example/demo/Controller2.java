@@ -39,7 +39,7 @@ public class Controller2 implements Initializable {// used to set Leaderboard
     private TableColumn<Account, Long> SColumn;
 
     /**
-     * back to menu
+     * Go back to menu
      * @param event
      * @throws IOException
      */

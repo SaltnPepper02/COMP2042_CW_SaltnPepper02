@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class is to create and input accounts
+ * This class is to create and input accounts, it also reads from text file, writes to text file and clear text file.
  *
  * @author Richard Gan Soon Ching-modified
  */
@@ -28,7 +28,7 @@ public class Account implements Comparable<Account> {
     }
 
     /**
-     * Compare score
+     * Compares score
      * @param o the object to be compared.
      * @return
      */
@@ -78,6 +78,8 @@ public class Account implements Comparable<Account> {
     }
 
     /**
+     * Helps turn array list into string
+     *
      * @return String
      */
     public String toString()

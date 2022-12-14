@@ -91,7 +91,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Bring up Leaderboard scene
+     *Change scene to LeaderBoard
      * @param event
      * @throws IOException
      */
@@ -115,7 +115,7 @@ public class Controller implements Initializable {
 
 
     /**
-     * Close pstage
+     * Close the window
      * @param event
      * @throws IOException
      */
