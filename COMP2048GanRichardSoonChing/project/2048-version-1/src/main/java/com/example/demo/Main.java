@@ -1,4 +1,4 @@
-    package com.example.demo;
+package com.example.demo;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -82,7 +82,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {// implement menu here
         setPStage(primaryStage);
         pstage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/menu.fxml"));
         primaryStage.setTitle("2048");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

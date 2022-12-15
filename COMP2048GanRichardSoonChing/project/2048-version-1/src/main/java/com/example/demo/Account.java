@@ -11,7 +11,7 @@ import java.util.*;
 public class Account implements Comparable<Account> {
     private long score;
     private String userName ;
-    public static ArrayList<Account> accounts = new ArrayList<>();
+    private static ArrayList<Account> accounts = new ArrayList<>();
 
     /**
      * Account contructor
@@ -23,7 +23,13 @@ public class Account implements Comparable<Account> {
         this.score = score;
     }
 
-    public ArrayList<Account> getAccounts(){
+
+    /**
+     * getter for accounts
+     *
+     * @return ArrayList for Account
+     */
+    public static ArrayList<Account> getAccounts(){
         return accounts;
     }
 

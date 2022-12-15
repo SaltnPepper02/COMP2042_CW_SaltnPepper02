@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static com.example.demo.Account.accounts;
+import static com.example.demo.Account.getAccounts;
 import static com.example.demo.Main.pstage;
 
 /**
@@ -41,15 +41,15 @@ public class Controller2 implements Initializable {// used to set Leaderboard
      * @throws IOException if there is no menu to go back to
      */
     public void whenBackPushed(ActionEvent event) throws IOException{
-        accounts.clear();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menu.fxml")));
+        getAccounts().clear();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/demo/menu.fxml")));
         pstage.setTitle("Welcome");
         Scene scene = new Scene(root);
         pstage.setScene(scene);
         pstage.show();
     }
 
-    ObservableList<Account> list = FXCollections.observableArrayList(accounts);
+    ObservableList<Account> list = FXCollections.observableArrayList(getAccounts());
 
     /**
      * set table view for leaderboard

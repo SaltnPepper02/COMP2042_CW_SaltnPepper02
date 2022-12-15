@@ -297,11 +297,11 @@ class GameScene {
     }
 
     /**
-     * check if there are the two same numbers at des tile when move horizontally and return true if they are
-     * @param i cell address
-     * @param j cell address
-     * @param des cell address
-     * @param sign cell address
+     * checks if a given destination for a horizontal move is valid.
+     * @param i row address
+     * @param j column address
+     * @param des destination
+     * @param sign direction of movement
      * @return true if destination is valid, false if it isnt
      */
     private boolean isValidDesH(int i, int j, int des, int sign) {
@@ -314,10 +314,10 @@ class GameScene {
 
     /**
      * Merge the numbers together and add them to score horizontally
-     * @param i cell address
-     * @param j cell address
-     * @param des cell address
-     * @param sign cell address
+     * @param i row of the cells to be moved
+     * @param j column of the cells to be moved
+     * @param des desired location column
+     * @param sign direction of movement
      */
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
@@ -334,10 +334,10 @@ class GameScene {
     }
     /**
      * check if there are the two same numbers at des tile when move vertically and return true if they are
-     * @param i cell address
-     * @param j cell address
-     * @param des cell address
-     * @param sign cell address
+     * @param i row address
+     * @param j column address
+     * @param des destination
+     * @param sign direction of movement
      * @return true if destination is valid, false if it isnt
      */
     private boolean isValidDesV(int i, int j, int des, int sign) {
@@ -348,10 +348,10 @@ class GameScene {
     }
     /**
      * Merge the numbers together and add them to score vertically
-     * @param i cell address
-     * @param j cell address
-     * @param des cell address
-     * @param sign cell address
+     * @param i row of the cells to be moved
+     * @param j column of the cells to be moved
+     * @param des desired location row
+     * @param sign direction of movement
      */
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
@@ -368,9 +368,11 @@ class GameScene {
     }
 
     /**
-     * @param i cell address
-     * @param j cell address
-     * @return true of they are nearly the same number, false if it isnt
+     *  check if a given cell has the same value as any of its neighboring cells
+     *
+     * @param i row cells
+     * @param j column cells
+     * @return true if the given cell has the same value as one of its neighbors, false if it isnt
      */
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
@@ -494,7 +496,7 @@ class GameScene {
 
             }
 
-            boolean check;
+                boolean check;
             if (haveEmptyCell == -1) {
                 if (GameScene.this.canNotMove()) {
                     primaryStage.setScene(endGameScene);

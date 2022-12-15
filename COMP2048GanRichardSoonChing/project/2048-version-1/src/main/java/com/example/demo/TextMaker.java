@@ -5,6 +5,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * This class is for adding text to the cells in the game
+ *
+ * @author Richard Gan Soon Ching-modified
+ */
 class TextMaker {
     private static TextMaker singleInstance = null;
 
@@ -24,10 +29,10 @@ class TextMaker {
 
     /**
      * make the text for the tiles
-     * @param input
-     * @param xCell
-     * @param yCell
-     * @param root
+     * @param input string to be displayed in the cell
+     * @param xCell x-coordinate of the cell
+     * @param yCell y-coordinate of the cell
+     * @param root the game screen
      * @return text
      */
     Text madeText(String input, double xCell, double yCell, Group root) {
@@ -42,9 +47,10 @@ class TextMaker {
     }
 
     /**
-     * change the text for the tiles
-     * @param first
-     * @param second
+     * this method swaps the values and positions of two Text objects.
+     *
+     * @param first first object to be swapped
+     * @param second second object to be swapped
      */
     static void changeTwoText(Text first, Text second) {
         String temp;

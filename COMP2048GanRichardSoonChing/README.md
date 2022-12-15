@@ -19,7 +19,7 @@ by clicking on the leaderboard button. I have also added a win menu when u hit 2
 
 Most of the features I have implemented are working.
 
-I wanted to implement some animation to the game itself but due to time constraints I am unable to implement it.
+I wanted to implement some animation to the game itself but due to time constraints I am unable to implement it. I also wanted to make some JUnit test but due to time constraints again i am unable to do that.
 
 I have added a second controller to implement the leaderboard menu
 

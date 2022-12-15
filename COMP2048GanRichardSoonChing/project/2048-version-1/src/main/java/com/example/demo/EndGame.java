@@ -89,7 +89,7 @@ public class EndGame {
                     root.getChildren().clear();
                     Parent root;
                     try {
-                        root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+                        root = FXMLLoader.load(getClass().getResource("../../../../resources/com/example/demo/menu.fxml"));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -199,7 +199,7 @@ public class EndGame {
                     root.getChildren().clear();
                     Parent root;
                     try {
-                        root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+                        root = FXMLLoader.load(getClass().getResource("/com/example/demo/menu.fxml"));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

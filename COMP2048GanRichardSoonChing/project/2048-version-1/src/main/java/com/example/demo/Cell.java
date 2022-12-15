@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 /**
  * This class is for tile design
  *
- * @author Richard Gan Soon Ching
+ * @author Richard Gan Soon Ching-modified
  */
 public class Cell {
     private Rectangle rectangle;
@@ -67,9 +67,9 @@ public class Cell {
     }
 
     /**
-     * Change the cell
+     * Swap the values of two cell and update their colors accordingly.
      *
-     * @param cell cell variable
+     * @param cell the cell whose value is to be swapped with the current cell.
      */
     void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
@@ -87,9 +87,9 @@ public class Cell {
     }
 
     /**
-     * adder for cell
+     * adding the value of one cell to another and updating their colors accordingly.
      *
-     * @param cell cell variable
+     * @param cell  the cell whose value is to be added to the current cell.
      */
     void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");

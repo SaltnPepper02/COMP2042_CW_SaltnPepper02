@@ -84,7 +84,7 @@ public class Controller implements Initializable {
      */
     public void whenLBPushed(ActionEvent event) throws IOException {// Leaderboard button
         readFile();
-        Parent root = FXMLLoader.load(getClass().getResource("leaderboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/leaderboard.fxml"));
         pstage.setTitle("LeaderBoard");
         Scene scene2 = new Scene(root);
         pstage.setScene(scene2);
