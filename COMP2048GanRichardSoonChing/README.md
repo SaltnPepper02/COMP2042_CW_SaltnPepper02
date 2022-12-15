@@ -8,7 +8,7 @@ I coded this program in Intellij so first download javafx. After u download java
 file-> Project Structure. Then go to library-> + symbol and click on new Java library, go to where ur javafx library is
 and import it into ur file. U should be able to run the game.
 
-My javadocs is stored within the folder COMP2042GanRichardSoonChing.
+My javadocs is stored within the folder COMP2042GanRichardSoonChing. The path is \COMP2048GanRichardSoonChing\javadoc\index.html
 
 I have fix several logic issues which are the score not counting properly, tiles spawn when inputting letters other than
 the keypads, tiles spawning when all tiles are unable to move and an issue where 4 of the same numbers when in a
