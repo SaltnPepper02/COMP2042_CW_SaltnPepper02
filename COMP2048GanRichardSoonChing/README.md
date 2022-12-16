@@ -9,6 +9,8 @@ file-> Project Structure. Then go to library-> + symbol and click on new Java li
 and import it into your file. You should be able to run the game. If you cant run JUnit just remove it.
 If you encounter an error where location is required, right-click resource-> Mark Directory as->Resource Root
 
+Change when read and write change the path to the wherever you are running
+
 My javadocs is stored within the folder COMP2042GanRichardSoonChing. The path is ..\COMP2048GanRichardSoonChing\javadoc\index.html
 
 List of features that are implemented and are working properly
