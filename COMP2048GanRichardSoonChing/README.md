@@ -11,6 +11,8 @@ If you encounter an error where location is required, right-click resource-> Mar
 
 Change when read and write change the path to the wherever you are running
 
+Open COMP2048GanRichardSoonChing
+
 My javadocs is stored within the folder COMP2042GanRichardSoonChing. The path is ..\COMP2048GanRichardSoonChing\javadoc\index.html
 
 List of features that are implemented and are working properly
