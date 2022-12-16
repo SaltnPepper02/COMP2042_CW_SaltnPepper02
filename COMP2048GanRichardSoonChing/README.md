@@ -1,14 +1,14 @@
 # 2048-SM-Porject
-This is a school project for my Software Maintanence Module
+This is a university project for my Software Maintanence Module
 
 Name: Richard Gan Soon Ching
 Student ID : 20303960
 
-I coded this program in Intellij so first download javafx. After u download javafx go to the top bar and click 
-file-> Project Structure. Then go to library-> + symbol and click on new Java library, go to where ur javafx library is
-and import it into ur file. You should be able to run the game.
+I coded this program in Intellij so first download javafx. After you have downloaded javafx, go to the top bar and click 
+file-> Project Structure. Then go to library-> + symbol and click on new Java library, go to where your javafx library is
+and import it into your file. You should be able to run the game.
 
-My javadocs is stored within the folder COMP2042GanRichardSoonChing. The path is \COMP2048GanRichardSoonChing\javadoc\index.html
+My javadocs is stored within the folder COMP2042GanRichardSoonChing. The path is ..\COMP2048GanRichardSoonChing\javadoc\index.html
 
 List of features that are implemented and are working properly
 - Fixed score
