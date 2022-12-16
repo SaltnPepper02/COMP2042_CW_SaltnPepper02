@@ -29,15 +29,27 @@ class GameScene {
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     private final TextMaker textMaker = TextMaker.getSingleInstance();
-    private Cell[][] cells = new Cell[n][n];
+    private static Cell[][] cells = new Cell[n][n];
     private Group root;
     private static long score = 0;
     public int winscore = 0;
     public int[][] Old = new int[n][n];
     public int[][] New = new int[n][n];
 
-    public long getScore(){
+    static int getN(){
+        return n;
+    }
+
+    static Cell getCell(int i, int j){
+        return cells[i][j];
+    }
+
+    static long getScore(){
         return score;
+    }
+
+    public void setScore(){
+        this.score = score;
     }
 
     /**
@@ -219,7 +231,7 @@ class GameScene {
            }
     		return coordinate;
 
-            
+
     }
     /**
      * send new coordinates when move up
@@ -330,7 +342,7 @@ class GameScene {
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);// scoring has been implemented here
         }
-        
+
     }
     /**
      * check if there are the two same numbers at des tile when move vertically and return true if they are
@@ -364,7 +376,7 @@ class GameScene {
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);// scoring has been implemented here
         }
-        
+
     }
 
     /**

@@ -112,7 +112,7 @@ public class Account implements Comparable<Account> {
     public static void clearFile()
     {
         try{
-            FileWriter fw = new FileWriter("Leaderboard.txt", false);
+            FileWriter fw = new FileWriter("src/main/resources/com/example/demo/Leaderboard.txt", false);
             PrintWriter pw = new PrintWriter(fw, false);
             pw.flush();
             pw.close();
@@ -127,7 +127,7 @@ public class Account implements Comparable<Account> {
      */
     public static void readFile() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("Leaderboard.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/com/example/demo/Leaderboard.txt"));
 
             String lineText;
             while ((lineText = br.readLine()) != null) {
@@ -146,7 +146,7 @@ public class Account implements Comparable<Account> {
      */
     public static void write2File(){
         try{
-            FileWriter fw = new FileWriter("Leaderboard.txt", true);
+            FileWriter fw = new FileWriter("src/main/resources/com/example/demo/Leaderboard.txt", true);
 
             Collections.sort(accounts);
 
