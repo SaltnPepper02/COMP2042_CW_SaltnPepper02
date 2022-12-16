@@ -14,8 +14,9 @@ import javafx.scene.shape.Rectangle;
 import static com.example.demo.Controller.myColor;
 
 /**
- * This class is the main class. It calls all the other classes.
- *
+ * This class is the main class for the application.
+ * It extends the javafx.application.Application class and overrides its start method.
+ * It also contains methods for setting and getting the game scene and root, and for starting the game.
  * @author Richard Gan Soon Ching-modified
  */
 public class Main extends Application {
@@ -127,9 +128,9 @@ public class Main extends Application {
     }
 
     /**
-     * The main method. Launches the entire code.
+     * The main method for the application. Launches the entire code.
      *
-     * @param args
+     * @param args args command line arguments passed to the application.
      */
     public static void main(String[] args) {
         launch(args);

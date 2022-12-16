@@ -25,7 +25,7 @@ import static com.example.demo.Main.pstage;
  *
  * @author Richard Gan Soon Ching
  */
-public class Controller2 implements Initializable {// used to set Leaderboard
+public class LBController implements Initializable {// used to set Leaderboard
 
     @FXML
     private TableView<Account> table;

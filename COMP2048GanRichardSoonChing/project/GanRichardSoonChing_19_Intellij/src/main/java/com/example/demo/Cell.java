@@ -36,12 +36,12 @@ public class Cell {
     }
 
     /**
-     * Set cell design
+     * Constructs a new cell with the given position and scale.
      *
-     * @param x Horizontal Cell
-     * @param y Vertical cell
-     * @param scale scale
-     * @param root initiate root
+     *  @param x The x-coordinate of the cell.
+     *  @param y The y-coordinate of the cell.
+     *  @param scale The size of the cell.
+     *  @param root The root group to which the cell will be added.
      */
     Cell(double x, double y, double scale, Group root) {
         rectangle = new Rectangle();
@@ -125,7 +125,7 @@ public class Cell {
     /**
      * getter for X
      *
-     * @return rectangle.getX()
+     * @return The x-coordinate of the cell.
      */
     double getX() {
         return rectangle.getX();

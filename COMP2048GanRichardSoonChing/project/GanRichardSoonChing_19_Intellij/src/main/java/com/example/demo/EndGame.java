@@ -40,6 +40,8 @@ public class EndGame {
 
     /**
      * Win scene
+     * If any of the tiles on the board has a value of 2048, the game will end and the player will be taken to the end game scene where they will be shown a win screen.
+     *
      * @param root root for endgame
      * @param primaryStage stage for the scene
      * @param score game score
@@ -134,6 +136,8 @@ public class EndGame {
 
     /**
      * Game over Scene
+     * Shows the player's final score and allows the player to return to the main menu or play again.
+     * Added username and score into Leaderboard
      *
      * @param endGameScene end game background scene
      * @param root root for end game

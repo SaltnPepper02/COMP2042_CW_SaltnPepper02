@@ -41,8 +41,8 @@ class GameScene {
     }
 
     /**
-     * set the dimension for the grid
-     * @param string get the string from Controller
+     * Sets the dimension of the game board based on the given string.
+     * @param string The string representing the desired dimension of the game board.
      */
     static void setDimension(String string){// set grid
         switch (string) {
@@ -56,12 +56,12 @@ class GameScene {
 
 
     /**
-     * Update outdated array with current one
+     * Updates the given array with the current state of the game board.
      *
-     * @param array input old and new array to check if they are identical
+     * @param array The array to be updated.
      */
     private void updateArray (int[][] array){// used to compare before and after key pressed
-        for(int i=0; i<n; i++){// it keeps updating with every key pressed
+        for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
                 array[i][j]=cells[i][j].getNumber();
             }
@@ -147,7 +147,7 @@ class GameScene {
 
     /**
      * check if there is any empty cell on the grid
-     * @return 1 or 0 or -1 to check
+     * @return if there is an empty cell, 0 if there is a cell with the value 2048, and -1 otherwise
      */
     private int  haveEmptyCell() {
         for (int i = 0; i < n; i++) {
@@ -334,7 +334,7 @@ class GameScene {
     }
     /**
      * check if there are the two same numbers at des tile when move vertically and return true if they are
-     * @param i row address
+     * @param i the row index of the given tile
      * @param j column address
      * @param des destination
      * @param sign direction of movement
@@ -347,8 +347,8 @@ class GameScene {
         return false;
     }
     /**
-     * Merge the numbers together and add them to score vertically
-     * @param i row of the cells to be moved
+     * Merge the numbers together vertically and add them to score
+     * @param i the row index of the given tile
      * @param j column of the cells to be moved
      * @param des desired location row
      * @param sign direction of movement
@@ -370,9 +370,9 @@ class GameScene {
     /**
      *  check if a given cell has the same value as any of its neighboring cells
      *
-     * @param i row cells
-     * @param j column cells
-     * @return true if the given cell has the same value as one of its neighbors, false if it isnt
+     * @param i the row index of the given tile
+     * @param j the row column of the given tile
+     * @return Returns true if there is a tile with the same value on the board, and false otherwise.
      */
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
@@ -384,8 +384,8 @@ class GameScene {
         return false;
     }
 
-    /**check if you are able to move or not
-     * @return false if they are nearly the same number, true if they aren't
+    /**check if you are able to move or not on the current board
+     * @return Returns true if the player cannot make any more moves, and false if the player can make at least one more move.
      */
     private boolean canNotMove() {
         for (int i = 0; i < n; i++) {
@@ -400,9 +400,14 @@ class GameScene {
 
 
     /**
-     * Start the game
-     * @param gameScene gameBackground
-     * @param root game cells
+     * This method would set up and run the game.
+     * when it runs it would spawn a number of tiles based on what dimension is selected
+     * includes a "End Game" button that, when clicked, will end the game and show an alert asking the user to confirm their decision to end the game.
+     * If the user confirms, the game will switch to the end game scene and display the end game screen.
+     *
+     *
+     * @param gameScene the scene for the game
+     * @param root the root group for the game scene
      * @param primaryStage stage
      * @param endGameScene end game scene
      * @param endGameRoot end game root
@@ -436,7 +441,7 @@ class GameScene {
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
-        Button quitButton = new Button("End Game");//implement this button
+        Button quitButton = new Button("End Game");
         quitButton.setPrefSize(100,30);
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
