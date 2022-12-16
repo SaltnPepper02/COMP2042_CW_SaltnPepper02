@@ -7,7 +7,7 @@ Student ID : 20303960
 I coded this program in Intellij so first download javafx. After you have downloaded javafx, go to the top bar and click 
 file-> Project Structure. Then go to library-> + symbol and click on new Java library, go to where your javafx library is
 and import it into your file. You should be able to run the game. If you cant run JUnit just remove it.
-If you encounter an error where location is required, right-click resource-> Mark Directory as->Test Source Root
+If you encounter an error where location is required, right-click resource-> Mark Directory as->Resource Root
 
 My javadocs is stored within the folder COMP2042GanRichardSoonChing. The path is ..\COMP2048GanRichardSoonChing\javadoc\index.html
 
