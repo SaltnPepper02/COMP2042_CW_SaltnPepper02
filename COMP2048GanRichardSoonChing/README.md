@@ -6,21 +6,59 @@ Student ID : 20303960
 
 I coded this program in Intellij so first download javafx. After u download javafx go to the top bar and click 
 file-> Project Structure. Then go to library-> + symbol and click on new Java library, go to where ur javafx library is
-and import it into ur file. U should be able to run the game.
+and import it into ur file. You should be able to run the game.
 
-My javadocs is stored within the folder COMP2042GanRichardSoonChing.
+My javadocs is stored within the folder COMP2042GanRichardSoonChing. The path is \COMP2048GanRichardSoonChing\javadoc\index.html
 
-I have fix several logic issues which are the score not counting properly, tiles spawn when inputting letters other than
-the keypads, tiles spawning when all tiles are unable to move and an issue where 4 of the same numbers when in a
-line would combine to create one tile with the numbers added together instead of 2. I have added a menu screen with a
-play button, a leaderboard button, a quit button, a color picker which would change the background of the game scene and
-a grid changer to change the dimension of the board. Back to leaderboard, I implemented a leaderboard which u can access
-by clicking on the leaderboard button. I have also added a win menu when u hit 2048.
+List of features that are implemented and are working properly
+- Fixed score
+- Fixed spawning issue of tile
+- Fixed illegal move spawning tile
+- Fixed merged issue
+- Added Main Menu
+- Added Grid selector in main menu
+- Added leaderboard button
+- Added leaderboard which displays players name and highscore
+- Added color picker
+- Added End Game button on game screen
+- Added Win screen
+- Fixed Quit button on End Game Scene
+- Added Text field to save player name and score
 
-Most of the features I have implemented are working.
+Most of the features I have implemented are working. However, I am unable to implement junit test.
 
-I wanted to implement some animation to the game itself but due to time constraints I am unable to implement it. I also wanted to make some JUnit test but due to time constraints again i am unable to do that.
+I wanted to implement some animation to the game itself but due to time constraints I am unable to implement it.
 
 I have added a second controller to implement the leaderboard menu
 
 I have modified the classes Account, Cell, Controller, EndGame, GameScene and Main.
+Account:
+- Added method writeFile
+- Added method readFile
+- Added method clearFile
+- Added method toString
+- Modified Account construcor
+
+Cell:
+- Tried to modify setNumberByNumber with polymorphism
+
+Controller:
+- Added multiple variables
+- Added dimension Selection
+- Added whenStartPushed
+- Added whenLBPushed
+- Added colorChange
+- Added whenQuitPushed
+- Added initialize
+
+EndGame:
+- Added Win method
+- Added Restart button
+
+GameScene:
+- Modified multiple methods, important ones are passDestination, moveHorizontally and moveVertically
+
+Main:
+- Modified start
+- Added method startGame
+
