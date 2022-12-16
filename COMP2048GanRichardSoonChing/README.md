@@ -25,9 +25,9 @@ List of features that are implemented and are working properly
 - Fixed Quit button on End Game Scene
 - Added Text field to save player name and score
 
-Most of the features I have implemented are working.
+Most of the features I have implemented are working. However, I am unable to implement junit test.
 
-I wanted to implement some animation to the game itself but due to time constraints I am unable to implement it. I also wanted to make some JUnit test but due to time constraints again i am unable to do that.
+I wanted to implement some animation to the game itself but due to time constraints I am unable to implement it.
 
 I have added a second controller to implement the leaderboard menu
 
